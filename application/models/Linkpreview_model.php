@@ -12,7 +12,6 @@ class Linkpreview_model extends CI_Model {
     public function get_all() {
         $this->db->from($this->table);
         return $this->db->order_by('id','DESC')->get()->result();
-        // return $this->db->get($this->table);
     }
 
     public function insert($data) {

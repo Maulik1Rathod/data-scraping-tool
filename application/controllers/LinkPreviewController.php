@@ -10,7 +10,7 @@ class LinkPreviewController extends CI_Controller {
         $this->load->helper(['url','form']);
     }
 
-    // Show home page with saved previews
+    // Show home page 
     public function index() {
         $this->load->view('linkpreview_view');
     }
@@ -77,6 +77,7 @@ class LinkPreviewController extends CI_Controller {
 
     }
 
+    // show the saved previews
     public function records() {
         $data['links'] = $this->Linkpreview_model->get_all();
         $this->load->view('records', $data);
