@@ -49,6 +49,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'LinkPreviewController';
+
+// When user submits URL to fetch preview (AJAX)
+$route['preview/fetch'] = 'LinkPreviewController/fetch';
+
+// When user saves preview data in DB
+$route['preview/save'] = 'LinkPreviewController/save';
+
+// Pagination route (for showing results page wise)
+// $route['page/(:num)'] = 'LinkPreviewController/index/$1';
+$route['preview/records'] = 'LinkPreviewController/records';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

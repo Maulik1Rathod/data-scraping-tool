@@ -1,0 +1,26 @@
+
+
+SELECT tbl_lp.post_id,
+       tbl_lp.library_id,
+       tbl_lp.message,
+       tbl_lp.priority,
+       t.expected_priority
+FROM library_posts tbl_lp
+JOIN (
+    SELECT post_id, library_id,
+    ROW_NUMBER() OVER (PARTITION BY library_id ORDER BY priority) AS expected_priority
+    FROM library_posts
+) t ON tbl_lp.post_id = t.post_id
+WHERE tbl_lp.library_id IN (
+    SELECT library_id
+    FROM (
+        SELECT library_id,
+               post_id,
+               priority,
+               ROW_NUMBER() OVER (PARTITION BY library_id ORDER BY priority) AS expected_priority
+        FROM library_posts
+    ) tbl
+)
+
+
+
